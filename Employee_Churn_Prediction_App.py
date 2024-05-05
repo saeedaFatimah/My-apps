@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from joblib import load
 import dill
+from sklearn.impute import SimpleImputer
 
 # Load the pretrained model
 with open('pipeline.pkl', 'rb') as file:
@@ -11,9 +12,13 @@ my_feature_dict = load('my_feature_dict.pkl')
 
 # Function to predict churn
 def predict_churn(data):
-    prediction = model.predict(data)
+    # Impute missing values
+    imputer = SimpleImputer(strategy='mean')
+    data_imputed = imputer.fit_transform(data)
+    
+    # Make predictions
+    prediction = model.predict(data_imputed)
     return prediction
-
 
 st.title('Employee Churn Prediction App')
 st.subheader('Based on Employee Dataset')
