@@ -14,6 +14,7 @@ def predict_churn(data):
     prediction = model.predict(data)
     return prediction
 
+
 st.title('Employee Churn Prediction App')
 st.subheader('Based on Employee Dataset')
 
@@ -21,17 +22,17 @@ st.subheader('Based on Employee Dataset')
 st.subheader('Categorical Features')
 categorical_input = my_feature_dict.get('CATEGORICAL')
 categorical_input_vals={}
-for i, col in enumerate(categorical_input.get('Column Name')):
-    members = categorical_input.get('Members')[i]
-    categorical_input_vals[col] = st.selectbox(str(col), members)
+for i, col in enumerate(categorical_input.get('Column Name').values()):
+    categorical_input_vals[col] = st.selectbox(col, categorical_input.get('Members')[i])
 
 # Load numerical features
 numerical_input = my_feature_dict.get('NUMERICAL')
 
 # Display numerical features
 st.subheader('Numerical Features')
+numerical_input = my_feature_dict.get('NUMERICAL')
 numerical_input_vals={}
-for col in numerical_input.get('Column Name'):
+for col in  numerical_input.get('Column Name'):
     numerical_input_vals[col] = st.number_input(col)
 
 # Combine numerical and categorical input dicts
