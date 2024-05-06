@@ -43,7 +43,7 @@ input_data= pd.DataFrame.from_dict(input_data,orient='index').T
 # Churn Prediction
 if st.button('Predict'):
     prediction = predict_churn(input_data)[0]
-    translation_dict = {"Yes": "Expected", "No": "Not Expected"}
+    translation_dict = {"1": "Expected", "0": "Not Expected"}
     prediction_translate = translation_dict.get(prediction)
     st.write(f'The Prediction is **{prediction}**, Hence customer is **{prediction_translate}** to churn.')
     
