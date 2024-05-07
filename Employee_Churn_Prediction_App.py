@@ -5,15 +5,14 @@ import dill
 
 # Load the pretrained model
 with open('pipeline.pkl', 'rb') as file:
-    model = dill.load(file)
+    pipeline = dill.load(file)
 
 my_feature_dict = load('my_feature_dict.pkl')
 
 # Function to predict churn
 def predict_churn(data):
-    prediction = model.predict(data)
+    prediction = pipeline.predict(data)
     return prediction
-
 
 st.title('Employee Churn Prediction App')
 st.subheader('Based on Employee Dataset')
